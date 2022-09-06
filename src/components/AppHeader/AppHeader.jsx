@@ -12,8 +12,7 @@ import { Typography } from '@ya.praktikum/react-developer-burger-ui-components'
 import headerStyles from './AppHeader.module.sass';
 import AppLinks from '../AppLinks/AppLinks';
 
-function AppHeader() {
-
+const AppHeader = () => {
   return (
     <header className={headerStyles.header}>
       <nav className={headerStyles.container}>
@@ -32,7 +31,7 @@ function AppHeader() {
         <Logo className={headerStyles.logo} />
       
       <ul className={headerStyles.nav}>
-        <AppLinks link={'test.ru'}  linkText={'Личный кабинет'}>
+        <AppLinks link={'#'}  linkText={'Личный кабинет'}>
             <ProfileIcon type="primary" />
         </AppLinks>
       </ul>

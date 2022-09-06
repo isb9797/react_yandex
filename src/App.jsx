@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components'
@@ -21,13 +20,15 @@ function App() {
   return (
     <div className="App">
      <AppHeader />
-        
+      <main className="main">
+        <div className="left">
+          {/* Ингридиенты (компонент)*/}
+        </div>
+        <div className="right">
+          {/* Конструктор (компонент) */}
+        </div>
 
-      
-      
-
-      
-      
+      </main>
     </div>
   );
 }
