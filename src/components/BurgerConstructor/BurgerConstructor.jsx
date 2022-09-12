@@ -9,6 +9,8 @@ import {
   CurrencyIcon,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import Modal from "../Modal/Modal";
+import OrderDetails from "../OrderDetails/order-details";
 
 //Импорт изображений для верстки конструктора
 import Bun from "../../images/constructor/burger component/bun-02.png";
@@ -18,9 +20,33 @@ import Mineral from "../../images/constructor/burger component/mineral rings-1.p
 
 import BurgerConstructorStyles from "./BurgerConstructor.module.sass";
 
+function useModalControls({ disableCloseButton, disableOverlayClick } = {}) {
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+
+  function handleOpenModal() {
+    setIsModalOpen(true);
+  }
+
+  function handleCloseModal(requester) {
+    setIsModalOpen(false);
+  }
+
+  return {
+    open: handleOpenModal,
+    close: handleCloseModal,
+    modalProps: {
+      isOpen: isModalOpen,
+      requestClose: handleCloseModal,
+      disableCloseButton,
+      disableOverlayClick,
+    },
+  };
+}
+
 const BurgerConstructor = (props) => {
   const data = props.data;
   console.log(data);
+  const modalControls = useModalControls({ disableOverlayClick: true });
 
   return (
     <div className={BurgerConstructorStyles.constructorContainer}>
@@ -92,12 +118,19 @@ const BurgerConstructor = (props) => {
             BurgerConstructorStyles.totalPrice + " text text_type_digits-medium"
           }
         >
-          610 <CurrencyIcon type="primary" />
+          2352 <CurrencyIcon type="primary" />
         </span>
 
-        <Button type="primary" size="large">
+        <Button onClick={modalControls.open} type="primary" size="large">
           Оформить заказ
         </Button>
+      </div>
+
+      <div className="hidden">
+        {console.log(data.image)}
+        <Modal {...modalControls.modalProps}>
+          <OrderDetails />
+        </Modal>
       </div>
     </div>
   );
