@@ -9,14 +9,15 @@ import Bun from "../../images/constructor/burger component/bun-02.png"; //Вре
 import IngredientDetailsStyles from "./ingredient-details.module.sass";
 
 const IngredientDetails = (props) => {
+  const ingredient = props.ingredient;
   return (
     <div className={IngredientDetailsStyles.detailsContainer}>
       <h3 className="text text_type_main-large mt-40">Детали ингридиента</h3>
 
-      <img src={Bun} alt="" />
+      <img src={ingredient.imageLarge} alt="" />
 
       <span className="text text_type_main-medium mt-4 mb-8">
-        Краторная булка
+        {ingredient.cardName}
       </span>
 
       <div className={IngredientDetailsStyles.ingridientDetails + " mb-15"}>
@@ -25,7 +26,7 @@ const IngredientDetails = (props) => {
             Калории,ккал
           </span>
           <span className="text text_type_digits-default text_color_inactive">
-            244,4
+            {ingredient.calories}
           </span>
         </div>
 
@@ -34,7 +35,7 @@ const IngredientDetails = (props) => {
             Белки, г
           </span>
           <span className="text text_type_digits-default text_color_inactive">
-            12,4
+            {ingredient.proteins}
           </span>
         </div>
 
@@ -43,7 +44,7 @@ const IngredientDetails = (props) => {
             Жиры, г
           </span>
           <span className="text text_type_digits-default text_color_inactive">
-            17,2
+            {ingredient.fat}
           </span>
         </div>
 
@@ -52,7 +53,7 @@ const IngredientDetails = (props) => {
             Углеводы, г
           </span>
           <span className="text text_type_digits-default text_color_inactive">
-            10,2
+            {ingredient.carbohydrates}
           </span>
         </div>
       </div>
