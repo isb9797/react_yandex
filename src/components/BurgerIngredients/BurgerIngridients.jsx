@@ -3,7 +3,6 @@ import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Box } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Typography } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import Modal from "../Modal/Modal";
 import Card from "../Card/Card";
 
 import IngredientDetails from "../IngredientsDetails/ingredients-details";

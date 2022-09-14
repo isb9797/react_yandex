@@ -24,13 +24,13 @@ function useModalControls({ disableCloseButton, disableOverlayClick } = {}) {
       isOpen: isModalOpen,
       requestClose: handleCloseModal,
       disableCloseButton,
-      disableOverlayClick,
+      disableOverlayClick: false,
     },
   };
 }
 
 const Card = (props) => {
-  const modalControls = useModalControls({ disableOverlayClick: true });
+  const modalControls = useModalControls();
   const [currentIngredient, setCurrentIngredient] = useState(props);
 
   return (

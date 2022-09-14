@@ -38,7 +38,7 @@ function useModalControls({ disableCloseButton, disableOverlayClick } = {}) {
       isOpen: isModalOpen,
       requestClose: handleCloseModal,
       disableCloseButton,
-      disableOverlayClick,
+      disableOverlayClick: false,
     },
   };
 }
