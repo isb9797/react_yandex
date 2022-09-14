@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import FocusTrap from "focus-trap-react";
 import { data } from "../../utils/data";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-
-import Bun from "../../images/constructor/burger component/bun-02.png"; //Временно
+import { IngredientDetailsPropTypes } from "../../utils/prop-types.js";
+import PropTypes from "prop-types";
 
 import IngredientDetailsStyles from "./ingredient-details.module.sass";
 
@@ -14,7 +14,7 @@ const IngredientDetails = (props) => {
     <div className={IngredientDetailsStyles.detailsContainer}>
       <h3 className="text text_type_main-large mt-40">Детали ингридиента</h3>
 
-      <img src={ingredient.imageLarge} alt="" />
+      <img src={ingredient.imageLarge} alt={ingredient.cardName} />
 
       <span className="text text_type_main-medium mt-4 mb-8">
         {ingredient.cardName}
@@ -59,6 +59,10 @@ const IngredientDetails = (props) => {
       </div>
     </div>
   );
+};
+
+IngredientDetails.propTypes = {
+  ingredient: PropTypes.arrayOf(IngredientDetailsPropTypes.isRequired),
 };
 
 export default IngredientDetails;

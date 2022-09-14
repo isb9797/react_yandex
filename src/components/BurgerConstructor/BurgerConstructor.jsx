@@ -44,8 +44,6 @@ function useModalControls({ disableCloseButton, disableOverlayClick } = {}) {
 }
 
 const BurgerConstructor = (props) => {
-  const data = props.data;
-  console.log(data);
   const modalControls = useModalControls({ disableOverlayClick: true });
 
   return (
@@ -127,7 +125,6 @@ const BurgerConstructor = (props) => {
       </div>
 
       <div className="hidden">
-        {console.log(data.image)}
         <Modal {...modalControls.modalProps}>
           <OrderDetails />
         </Modal>

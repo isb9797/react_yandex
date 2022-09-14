@@ -44,7 +44,7 @@ const Card = (props) => {
         ) : (
           ""
         )}
-        <img className="mb-1" src={props.src} alt={props.alt} />
+        <img className="mb-1" src={props.src} alt={props.name} />
         <div className={CardSyles.currency + " mb-1"}>
           <span className="text text_type_digits-default">
             {props.currency}
