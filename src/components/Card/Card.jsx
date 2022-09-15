@@ -3,6 +3,7 @@ import { Typography } from "@ya.praktikum/react-developer-burger-ui-components";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from "../Modal/Modal";
 import IngredientDetails from "../IngredientsDetails/ingredients-details";
+import ModalOverlay from "../ModalOverlay/modal-overlay";
 
 import { IngredientDetailsPropTypes } from "../../utils/prop-types.js";
 import PropTypes from "prop-types";
