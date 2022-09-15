@@ -4,6 +4,9 @@ import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components
 import Modal from "../Modal/Modal";
 import IngredientDetails from "../IngredientsDetails/ingredients-details";
 
+import { IngredientDetailsPropTypes } from "../../utils/prop-types.js";
+import PropTypes from "prop-types";
+
 import CardSyles from "./Card.module.sass";
 
 function useModalControls({ disableCloseButton, disableOverlayClick } = {}) {
@@ -61,6 +64,10 @@ const Card = (props) => {
       </div>
     </>
   );
+};
+
+Card.propTypes = {
+  ingredient: PropTypes.arrayOf(IngredientDetailsPropTypes.isRequired),
 };
 
 export default Card;

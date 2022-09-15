@@ -10,8 +10,8 @@ export const ingridientPropTypes = PropTypes.shape({
   calories: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
-  imageLarger: PropTypes.string.isRequired,
-  imageMobile: PropTypes.string.isRequired,
+  image_mobile: PropTypes.string.isRequired,
+  image_large: PropTypes.string.isRequired,
 });
 
 export const IngredientDetailsPropTypes = PropTypes.shape({

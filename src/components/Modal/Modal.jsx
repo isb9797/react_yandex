@@ -8,7 +8,7 @@ import ModalStyles from "./Modal.module.sass";
 
 const modalsElement = document.querySelector("#modal");
 
-const ModalOverlay = (props) => {
+const Modal = (props) => {
   React.useEffect(() => {
     const handleEsc = (ev) => {
       ev.key === "Escape" && props.requestClose();
@@ -52,4 +52,4 @@ const ModalOverlay = (props) => {
   );
 };
 
-export default ModalOverlay;
+export default Modal;
