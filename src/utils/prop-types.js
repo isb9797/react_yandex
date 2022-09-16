@@ -31,17 +31,18 @@ export const IngredientDetailsPropTypes = PropTypes.shape({
 export const LinksPropTypes = PropTypes.shape({
   link: PropTypes.string.isRequired,
   linkText: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 });
 
 export const BurgerIngridientsPropTypes = PropTypes.shape({
-  data: PropTypes.object.isRequired,
+  data: PropTypes.arrayOf(ingridientPropTypes.isRequired).isRequired,
 });
 
 export const ModalPropTypes = PropTypes.shape({
   requestClose: PropTypes.func.isRequired,
   disableOverlayClick: PropTypes.bool,
   isOpen: PropTypes.bool,
-  children: PropTypes.object.isRequired,
+  children: PropTypes.node.isRequired,
 });
 
 export const ModalOverlayPropTypes = PropTypes.shape({

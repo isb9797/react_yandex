@@ -9,7 +9,7 @@ import IngredientDetails from "../IngredientsDetails/ingredients-details";
 import BurgerIngridientsStyles from "./BurgerIngridientsStyles.module.sass";
 
 import PropTypes from "prop-types";
-import { BurgerIngridientsPropTypes } from "../../utils/prop-types";
+import { ingridientPropTypes } from "../../utils/prop-types";
 
 const BurgerIngridients = (props) => {
   const data = props.data;
@@ -84,6 +84,8 @@ const BurgerIngridients = (props) => {
   );
 };
 
-BurgerIngridients.propTypes = BurgerIngridientsPropTypes.isRequired;
+BurgerIngridients.propTypes = {
+  data: PropTypes.arrayOf(ingridientPropTypes.isRequired).isRequired,
+};
 
 export default BurgerIngridients;
