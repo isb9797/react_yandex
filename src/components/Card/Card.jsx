@@ -67,8 +67,6 @@ const Card = (props) => {
   );
 };
 
-Card.propTypes = {
-  currentIngredient: PropTypes.arrayOf(IngredientDetailsPropTypes.isRequired),
-};
+Card.propTypes = IngredientDetailsPropTypes.isRequired;
 
 export default Card;

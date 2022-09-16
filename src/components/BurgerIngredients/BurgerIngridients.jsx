@@ -6,8 +6,10 @@ import { Typography } from "@ya.praktikum/react-developer-burger-ui-components";
 import Card from "../Card/Card";
 
 import IngredientDetails from "../IngredientsDetails/ingredients-details";
-
 import BurgerIngridientsStyles from "./BurgerIngridientsStyles.module.sass";
+
+import PropTypes from "prop-types";
+import { BurgerIngridientsPropTypes } from "../../utils/prop-types";
 
 const BurgerIngridients = (props) => {
   const data = props.data;
@@ -81,5 +83,7 @@ const BurgerIngridients = (props) => {
     </>
   );
 };
+
+BurgerIngridients.propTypes = BurgerIngridientsPropTypes.isRequired;
 
 export default BurgerIngridients;

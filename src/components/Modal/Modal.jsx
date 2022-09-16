@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-// import FocusTrap from "focus-trap-react";
+
+import PropTypes from "prop-types";
+import { ModalPropTypes } from "../../utils/prop-types";
+
 import { data } from "../../utils/data";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
@@ -50,4 +53,5 @@ const Modal = (props) => {
   );
 };
 
+Modal.propTypes = ModalPropTypes.isRequired;
 export default Modal;

@@ -7,7 +7,8 @@ import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import OrderDetailsStyles from "./order-details.module.sass";
 
 import Done from "../../images/constructor/done.png";
-const OrderDetails = (props) => {
+//Так как пропсов пока нет, типизацию, считаю не нужной. Как только начну передавать - сразу сделаю)
+const OrderDetails = () => {
   return (
     <div className={OrderDetailsStyles.container}>
       <span className="text text_type_digits-large mt-20">034382</span>
@@ -25,5 +26,7 @@ const OrderDetails = (props) => {
     </div>
   );
 };
+
+//Так как пропсов пока нет, типизацию, считаю не нужной. Как только начну передавать - сразу сделаю)
 
 export default OrderDetails;
