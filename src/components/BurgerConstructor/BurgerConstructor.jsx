@@ -42,8 +42,8 @@ function useModalControls({ disableCloseButton, disableOverlayClick } = {}) {
     },
   };
 }
-
-const BurgerConstructor = (props) => {
+///Так как пропсов пока нет, типизацию, считаю не нужной. Как только начну передавать - сразу сделаю)
+const BurgerConstructor = () => {
   const modalControls = useModalControls({ disableOverlayClick: true });
 
   return (
