@@ -10,6 +10,9 @@ import PropTypes from "prop-types";
 
 import CardSyles from "./Card.module.sass";
 
+//react-dnd
+import { useDrag } from 'react-dnd'
+
 function useModalControls({ disableCloseButton, disableOverlayClick } = {}) {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
@@ -36,6 +39,26 @@ function useModalControls({ disableCloseButton, disableOverlayClick } = {}) {
 const Card = (props) => {
   const modalControls = useModalControls();
   const [currentIngredient, setCurrentIngredient] = useState(props);
+  //react-dnd
+  const [{ isDragging }, drag] = useDrag(() => ({
+    // type: ItemTypes.BOX,
+    item: 'Date',
+    end: (item, monitor) => {
+      const dropResult = monitor.getDropResult()
+      if (item && dropResult) {
+        alert(`You dropped ${item.name} into ${dropResult.name}!`)
+      }
+    },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+      handlerId: monitor.getHandlerId(),
+    }),
+  }));
+  const opacity = isDragging ? 0.4 : 1;
+
+
+
+
 
   return (
     <>
@@ -43,7 +66,7 @@ const Card = (props) => {
         onClick={modalControls.open}
         className={CardSyles.card + " mt-6 mb-10 pl-4 pr-4"}
       >
-        {props.checked === true ? (
+        {props.checked === false ? ( // Заменить на стейт при перетаскивании
           <div className={CardSyles.checked}>1</div>
         ) : (
           ""

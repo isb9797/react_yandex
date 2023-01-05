@@ -11,10 +11,15 @@ import BurgerIngridientsStyles from "./BurgerIngridientsStyles.module.sass";
 import PropTypes from "prop-types";
 import { ingridientPropTypes } from "../../utils/prop-types";
 
-const BurgerIngridients = (props) => {
-  const data = props.data;
+//redux 
+import { useDispatch, useSelector } from 'react-redux';
+
+const BurgerIngridients = () => {
+
+  const data = useSelector(state => state.ingredients.data.data);
+  // console.log(data);
   const [current, setCurrent] = React.useState("one");
-  const types = data.map((element) => element.type);
+  const types = data ? data.map((element) => element.type) : '';
   const typesUnique = Array.from(new Set(types));
 
   return (
@@ -46,7 +51,7 @@ const BurgerIngridients = (props) => {
               title = "Основы";
               break;
             default:
-              title = "Что инопланетное";
+              title = "Что-то инопланетное";
           }
           // var indexOfIngridientGlobal;
           return (
@@ -56,25 +61,27 @@ const BurgerIngridients = (props) => {
             >
               <h3 className="text text_type_main-medium">{title}</h3>
               <div className={BurgerIngridientsStyles.ingridientsContainer}>
-                {data.map((ingridient, index) => {
-                  if (ingridient.type === type) {
-                    return (
-                      <Card
-                        idElem={ingridient._id}
-                        checked={true}
-                        src={ingridient.image}
-                        currency={ingridient.price}
-                        cardName={ingridient.name}
-                        key={index}
-                        carbohydrates={ingridient.carbohydrates}
-                        calories={ingridient.calories}
-                        fat={ingridient.fat}
-                        proteins={ingridient.proteins}
-                        imageLarge={ingridient.image_large}
-                      />
-                    );
-                  }
-                })}
+                {data ?
+                  data.map((ingridient, index) => {
+                    if (ingridient.type === type) {
+                      return (
+                        <Card
+                          idElem={ingridient._id}
+                          checked={true}
+                          src={ingridient.image}
+                          currency={ingridient.price}
+                          cardName={ingridient.name}
+                          key={index}
+                          carbohydrates={ingridient.carbohydrates}
+                          calories={ingridient.calories}
+                          fat={ingridient.fat}
+                          proteins={ingridient.proteins}
+                          imageLarge={ingridient.image_large}
+                        />
+                      );
+                    }
+                  }) : 'Произошла ошибка'
+                }
               </div>
             </div>
           );
@@ -84,8 +91,8 @@ const BurgerIngridients = (props) => {
   );
 };
 
-BurgerIngridients.propTypes = {
-  data: PropTypes.arrayOf(ingridientPropTypes.isRequired).isRequired,
-};
+// BurgerIngridients.propTypes = {
+//   data: PropTypes.arrayOf(ingridientPropTypes.isRequired).isRequired,
+// };
 
 export default BurgerIngridients;

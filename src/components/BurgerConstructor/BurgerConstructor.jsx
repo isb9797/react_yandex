@@ -20,6 +20,11 @@ import Mineral from "../../images/constructor/burger component/mineral rings-1.p
 
 import BurgerConstructorStyles from "./BurgerConstructor.module.sass";
 
+//REDUX
+import { useDispatch, useSelector } from 'react-redux';
+
+//react-dnd
+import { useDrop } from 'react-dnd'
 function useModalControls({ disableCloseButton, disableOverlayClick } = {}) {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
@@ -45,6 +50,34 @@ function useModalControls({ disableCloseButton, disableOverlayClick } = {}) {
 ///Так как пропсов пока нет, типизацию, считаю не нужной. Как только начну передавать - сразу сделаю)
 const BurgerConstructor = () => {
   const modalControls = useModalControls({ disableOverlayClick: true });
+  const constructorElementsData = useSelector(state => state.constructorData.ingredientsInOrder);
+  const emptyData = useSelector(state => state.constructorData.empty);
+  const dispatch = useDispatch();
+
+  console.log(constructorElementsData);
+
+  // const getDataToConstructor = () => {
+  //   dispatch({ type: 'GET_INGREDIENTS_FROM_CONSTRUCTOR' })
+  // }
+
+  const [{ canDrop, isOver }, drop] = useDrop(() => ({
+    accept: 'BUN',
+    drop: () => ({ name: 'Dustbin' }),
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+      canDrop: monitor.canDrop(),
+    }),
+  }))
+  const isActive = canDrop && isOver
+  let backgroundColor = '#222'
+  if (isActive) {
+    backgroundColor = 'darkgreen'
+  } else if (canDrop) {
+    backgroundColor = 'darkkhaki'
+  }
+
+
+
 
   return (
     <div className={BurgerConstructorStyles.constructorContainer}>
@@ -61,42 +94,35 @@ const BurgerConstructor = () => {
             />
           </div>
           <div className={BurgerConstructorStyles.reusedElements}>
-            <div className={BurgerConstructorStyles.reusedElement}>
-              <DragIcon type="primary" />
-              <ConstructorElement
-                text="Соус традиционный галактический"
-                price={15}
-                thumbnail={Sauce} //props.img
-              />
+            {/* //----------------------------------------------------------------------- */}
+            <div ref={drop} data-testid="dustbin" className={BurgerConstructorStyles.reusedElement}>
+              {console.log(constructorElementsData)}
+
+
+              {!emptyData ?
+                constructorElementsData.map((ingredient, index) => {
+                  // return (
+                  //   <div key={index}>
+                  //     <DragIcon type="primary" />
+                  //     <ConstructorElement
+                  //       text={ingredient.name}
+                  //       price={ingredient.price}
+                  //       thumbnail={ingredient.image} //props.img
+                  //     />
+                  //   </div>
+                  // )
+                })
+                :
+                <div>
+                  <span>ДОБАВЬТЕ БОЛЬШЕ ИНГРЕДИЕНТОВ :)</span>
+                </div>
+              }
+
             </div>
 
-            <div className={BurgerConstructorStyles.reusedElement}>
-              <DragIcon type="primary" />
-              <ConstructorElement
-                text="Мясо бессмертных моллюсков Protostomia"
-                price={1337}
-                thumbnail={Meat} //props.img
-              />
-            </div>
 
-            <div className={BurgerConstructorStyles.reusedElement}>
-              <DragIcon type="primary" />
-              <ConstructorElement
-                text="Хрустящие минеральные кольца"
-                price={300}
-                thumbnail={Mineral} //props.img
-              />
-            </div>
-
-            <div className={BurgerConstructorStyles.reusedElement}>
-              <DragIcon type="primary" />
-              <ConstructorElement
-                text="Хрустящие минеральные кольца"
-                price={300}
-                thumbnail={Mineral} //props.img
-              />
-            </div>
           </div>
+          {/* //----------------------------------------------------------------------- */}
           <div className={BurgerConstructorStyles.lockElements}>
             <ConstructorElement
               className={BurgerConstructorStyles.lockElement}

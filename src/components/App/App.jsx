@@ -9,40 +9,51 @@ import BurgerIngridients from "../BurgerIngredients/BurgerIngridients";
 import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
 import { data } from "../../utils/data";
 
-import { getDataFromApi } from "../../utils/data-api";
+//redux
+import { getIngredients } from "../../services/reducers/BurgerIngredients";
+import { useDispatch, useSelector } from 'react-redux';
+import { getFromApi } from "../../services/acyncActions/BurgerIngredients"
+//react-dnd
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+
+
+// import { getDataFromApi } from "../../utils/data-api";
 
 import AppStyles from "./App.module.sass";
 
 const App = () => {
   //Хуки
-  const [ingridientsList, setIngridients] = useState([]);
+  // const [ingridientsList, setIngridients] = useState([]);
+  // const [value, setValue] = React.useState("value");
 
-  const [value, setValue] = React.useState("value");
   const inputRef = React.useRef(null);
+  const dispatch = useDispatch();
+
+
 
   useEffect(() => {
-    getDataFromApi()
-      .then(setIngridients)
-      .catch(() => {
-        alert("Произошла ошибка :(");
-      })
-      .finally(() => {
-        console.log("Загрузка прошла успешно");
-        console.dir(ingridientsList);
-      });
-  }, []);
+    dispatch(getFromApi());
+  }, [dispatch]);
+
+
+
+
+
 
   return (
     <div className={AppStyles.App}>
       <AppHeader />
-      <main className={AppStyles.main}>
-        <div className={AppStyles.left + " mr-10"}>
-          <BurgerIngridients data={ingridientsList} />
-        </div>
-        <div className={AppStyles.right}>
-          <BurgerConstructor data={ingridientsList} />
-        </div>
-      </main>
+      <DndProvider backend={HTML5Backend}>
+        <main className={AppStyles.main}>
+          <div className={AppStyles.left + " mr-10"}>
+            <BurgerIngridients />
+          </div>
+          <div className={AppStyles.right}>
+            <BurgerConstructor />
+          </div>
+        </main>
+      </DndProvider>
     </div>
   );
 };
